@@ -1,5 +1,11 @@
-# Elasticsearch XPack Basic License Setup Authentication
+# Elasticsearch XPack Basic License Authentication Setup
 
-The goal of these exercises are to assess your proficiency in software engineering that is related to the daily work that we do at Xendit. Please follow the instructions below to complete the assessment.
+This document will provide you guide on how to setup authentication on elasticseach xpack basic license
 
-## Setup
+## Download elasticsearch and extract
+```
+  $ cd srv
+	$ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.3-darwin-x86_64.tar.gz
+	$ tar xzvf elasticsearch-7.9.3-darwin-x86_64.tar.gz
+	$ cd elasticsearch-7.9.3
+```
