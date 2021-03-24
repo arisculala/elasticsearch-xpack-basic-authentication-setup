@@ -105,7 +105,31 @@ curl --user elastic:elasticsearch -X POST "localhost:9200/_security/api_key?pret
 }
 '
 ```
-  
+* After you execute the command above take note on the generated api key
+```
+{
+  "id" : "VcfhZHgBOrZ190hkLwxC",
+  "name" : "csmsf-api-key",
+  "api_key" : "oQcdC8LfR2Cczlz2YrZMFA"
+}
+```
+* NOTE: The apiKey value credentials are the base64 encoding of the API key ID and the API key joined by a colon. You can use a tool https://www.base64encode.org/ to generate the base64 apiKey value. In the sample above the apiKey is `VmNmaFpIZ0JPcloxOTBoa0x3eEM6b1FjZEM4TGZSMkNjemx6MllyWk1GQQ==`
+
+## Test the api key generated to connect to elasticsearch
+* When you type below command you will get an error
+```
+$ curl localhost:9200
+
+{"error":{"root_cause":[{"type":"security_exception","reason":"missing authentication credentials for REST request [/]","header":{"WWW-Authenticate":["Basic realm=\"security\" charset=\"UTF-8\"","ApiKey"]}}],"type":"security_exception","reason":"missing authentication credentials for REST request [/]","header":{"WWW-Authenticate":["Basic realm=\"security\" charset=\"UTF-8\"","ApiKey"]}},"status":401}
+```
+* Execute below command to get elasticsearch info using API key authentication
+```
+curl -H "Authorization: ApiKey VmNmaFpIZ0JPcloxOTBoa0x3eEM6b1FjZEM4TGZSMkNjemx6MllyWk1GQQ==" http://localhost:9200/_cluster/health
+
+OR
+
+curl -H "Authorization: ApiKey VmNmaFpIZ0JPcloxOTBoa0x3eEM6b1FjZEM4TGZSMkNjemx6MllyWk1GQQ==" http://localhost:9200/
+```
 
 
 
