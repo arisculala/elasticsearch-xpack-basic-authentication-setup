@@ -62,7 +62,50 @@ $ bin/elasticsearch
 $ bin/elasticsearch-setup-passwords interactive
 ```
 
+## Enable api key authentication (add at the end of elasticsearch.yml)
+* Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/security-settings.html#api-key-service-settings
+```
+xpack.security.authc.api_key.enabled: true
 
+$ vi config/elasticsearch.yml
+```
+
+## Create api key (NOTE: make sure to use the user account you set up on above steps (e.g <user>/<password> elastic/elasticsearch))
+* (IMPORTANT: Take note the details of the generated api key as you will use the details in your appliacation to connect to the elasticsearch)
+* Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html
+* NOTE: below request we don't add expiration of the api key, if you want to add expiration of the api key you can specify using below field in the request:
+```
+"expiration": "1d"
+```
+* Execute below command to generate an api key (name: csmsf-api-key = you can change this value based on your preference)
+```
+curl --user elastic:elasticsearch -X POST "localhost:9200/_security/api_key?pretty" -H 'Content-Type: application/json' -d'
+{
+  "name": "csmsf-api-key",
+  "role_descriptors": { 
+    "role-a": {
+      "cluster": ["all"],
+      "index": [
+        {
+          "names": ["index-a*"],
+          "privileges": ["read"]
+        }
+      ]
+    },
+    "role-b": {
+      "cluster": ["all"],
+      "index": [
+        {
+          "names": ["index-b*"],
+          "privileges": ["all"]
+        }
+      ]
+    }
+  }
+}
+'
+```
+  
 
 
 
