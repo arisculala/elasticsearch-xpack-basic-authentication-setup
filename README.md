@@ -17,3 +17,24 @@ script.painless.regex.enabled: true
 
 $ vi config/elasticsearch.yml
 ```
+
+## Configure elasticsearch to use a single node locally
+```
+# Configure elasticsearch as a single node
+discovery.type: single-node
+
+$ vi config/elasticsearch.yml
+```
+
+## Set a unique cluster name for your machine in config/elasticsearch.yml
+* To avoid automatically joining other nodes in the network. Then set that cluster name in your application.yml in tomcat
+```
+cluster.name: elasticsearch
+
+$ vi config/elasticsearch.yml
+```
+
+##
+
+
+
