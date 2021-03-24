@@ -34,7 +34,35 @@ cluster.name: elasticsearch
 $ vi config/elasticsearch.yml
 ```
 
-##
+## Enable elasticsearch security (add at the end of elasticsearch.yml)
+```
+# --------------------------------- Security ----------------------------------
+xpack.security.enabled: true
+
+$ vi config/elasticsearch.yml
+```
+
+## Enable elasticsearch api key authentication (add at the end of elasticsearch.yml)
+```
+xpack.security.authc.api_key.enabled: true
+
+$ vi config/elasticsearch.yml
+```
+
+## Setup default xpack users account password (NOTE: Make sure to take note the passwords of all the account that you change)
+* When you have a new installation of xpack and enable the authentication, xpack will have a default user accounts. You need to update the password of all the default users of elasticsearch xpack.
+* Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/built-in-users.html#set-built-in-user-passwords
+* Open terminal and browse to your elasticsearch xpack folder
+```
+$ cd elasticsearch-7.9.3
+$ bin/elasticsearch
+```
+* open new terminal window, follow the instructions when prompt to enter the user's password:
+```
+$ bin/elasticsearch-setup-passwords interactive
+```
+
+
 
 
 
