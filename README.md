@@ -4,8 +4,16 @@ This document will provide you guide on how to setup authentication on elasticse
 
 ## Download elasticsearch and extract
 ```
-  $ cd srv
-	$ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.3-darwin-x86_64.tar.gz
-	$ tar xzvf elasticsearch-7.9.3-darwin-x86_64.tar.gz
-	$ cd elasticsearch-7.9.3
+$ cd srv
+$ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.3-darwin-x86_64.tar.gz
+$ tar xzvf elasticsearch-7.9.3-darwin-x86_64.tar.gz
+$ cd elasticsearch-7.9.3
+```
+
+## Enable painless regular expression parsing (add at the end of elasticsearch.yml)
+```
+# Add painless script regular expression parsing
+script.painless.regex.enabled: true
+
+$ vi config/elasticsearch.yml
 ```
